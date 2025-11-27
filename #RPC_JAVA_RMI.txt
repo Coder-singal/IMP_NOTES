@@ -1,0 +1,41 @@
+#RPC_JAVA_RMI
+AddServiceImpl.java
+import java.rmi.server.UnicastRemoteObject;
+import java.rmi.RemoteException;
+public class AddServiceImpl extends UnicastRemoteObject implements AddService {
+    private static final long serialVersionUID = 1L;
+    protected AddServiceImpl() throws RemoteException {
+        super(); // export object
+    }
+    @Override
+    public double add(double a, double b) throws RemoteException {
+        return a + b;
+    }
+}
+AddClient.java
+import java.rmi.*;
+public class AddClient {
+    public static void main(String[] args) throws Exception {
+        AddService s = (AddService) Naming.lookup("rmi://localhost/AddService");
+        System.out.println("Result: " + s.add(5, 7));
+    }
+}
+AddServer.java
+import java.rmi.*;
+import java.rmi.registry.*;
+public class AddServer {
+    public static void main(String[] args) {
+        try {
+            LocateRegistry.createRegistry(1099);
+            Naming.rebind("AddService", new AddServiceImpl());
+            System.out.println("Server ready");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+#AddService.java
+import java.rmi.*;
+public interface AddService extends Remote {
+    double add(double a, double b) throws RemoteException;
+}

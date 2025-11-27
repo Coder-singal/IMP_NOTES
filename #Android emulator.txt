@@ -1,0 +1,9 @@
+#Android emulator
+adb devices
+adb shell
+ls /
+ls /system
+ls /data
+service list
+exit
+

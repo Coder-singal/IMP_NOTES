@@ -1,0 +1,16 @@
+#sharedmemory
+Writer.py
+from multiprocessing import shared_memory
+shm = shared_memory.SharedMemory(create=True, size=1024, name="ipc_demo")
+message = "Hello IPC using Shared Memory in Python!"
+shm.buf[:len(message)] = bytes(message, "utf-8")
+print("Writer wrote:", message)
+input("Press Enter after running reader...")
+shm.close()
+shm.unlink()
+reader.py
+from multiprocessing import shared_memory
+shm = shared_memory.SharedMemory(name="ipc_demo")
+data = bytes(shm.buf[:50]).decode("utf-8").rstrip("\x00")
+print("Reader read:", data)
+shm.close()

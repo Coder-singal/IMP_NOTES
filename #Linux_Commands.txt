@@ -1,0 +1,13 @@
+#Linux_Commands
+pwd
+ls
+cd /home
+mkdir myfolder
+cd myfolder
+touch file.txt
+echo "Hello World" > f.txt
+cat f.txt
+cp f.txt new.txt
+mv new.txt moved.txt
+rm moved.txt
+

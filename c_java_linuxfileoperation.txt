@@ -1,0 +1,53 @@
+#include<stdio.h>
+int main()
+{
+
+    FILE *fp;
+    fp = fopen("example.txt", "w");
+    if (fp == NULL)
+    {
+        printf("Error opening file!\n");
+        return 1;
+    }
+    fprintf(fp, "Hello, File System in C!\n");
+    fclose(fp);
+    // File reading
+    char buffer[100];
+    fp = fopen("example.txt", "r");
+    fgets(buffer, 100, fp);
+    printf("File content: %s", buffer);
+    fclose(fp);
+    return 0;
+}
+
+import java.io.*;
+
+public class FileOps {
+    public static void main(String[] args) {
+        try {
+            FileWriter writer = new FileWriter("example.txt");
+            writer.write("Hello, File System in Java!\n");
+            writer.close();
+            BufferedReader reader = new BufferedReader(new FileReader("example.txt"));
+            System.out.println("File content: " + reader.readLine());
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("Error occurred");
+        }
+    }
+}
+
+#Linux_Commands
+pwd
+ls
+cd /home
+mkdir myfolder
+cd myfolder
+touch file.txt
+echo "Hello World" > f.txt
+cat f.txt
+cp f.txt new.txt
+mv new.txt moved.txt
+rm moved.txt
+
+
